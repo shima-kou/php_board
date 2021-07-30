@@ -1,0 +1,16 @@
+.newpost-wrap {
+  margin-bottom: 40px;
+}
+.post-wrap {
+  border: 3px double #000;
+  box-sizing: border-box;
+  padding: 15px;
+  max-width: 500px;
+}
+.post-wrap > p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.post-wrap + .post-wrap {
+  margin-top: 20px;
+}
