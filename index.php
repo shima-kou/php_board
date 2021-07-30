@@ -41,9 +41,15 @@
           $counter++;
           $post = "
           <div class='post-wrap'>
-            <p>No:{$counter}</p>
-            <p>名前:{$value['user_name']}</p>
-            <p>投稿内容:{$value['message']}</p>
+            <form action='./delete_complete.php' method='POST'>
+              <p>No:{$counter}</p>
+              <p>名前:{$value['user_name']}</p>
+              <p>投稿内容:{$value['message']}</p>
+              <div>
+                <input type='hidden' name='id' value='{$value['id']}' />
+                <button type='submit' value='削除'>削除</button>
+              </div>
+            </form>
           </div>
           ";
           $html .= $post;
