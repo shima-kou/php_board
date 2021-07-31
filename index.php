@@ -1,3 +1,4 @@
+<?php require_once("db_connect.php"); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,7 +9,6 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <?php require("db_connect.php"); ?>
   <h1>掲示板</h1>
   <div class="newpost-wrap">
     <form action="./insert_complete.php" method="POST">
@@ -29,7 +29,7 @@
   <div class="board-wrap">
   <?php
     try {
-      $sql_statement = "SELECT * FROM board";
+      $sql_statement = 'SELECT * FROM board';
       $exec = $pdo->prepare($sql_statement);
       $exec->execute();
       $result = $exec->fetchAll(PDO::FETCH_ASSOC);
@@ -41,15 +41,23 @@
           $counter++;
           $post = "
           <div class='post-wrap'>
-            <form action='./delete_complete.php' method='POST'>
+
               <p>No:{$counter}</p>
               <p>名前:{$value['user_name']}</p>
               <p>投稿内容:{$value['message']}</p>
               <div>
-                <input type='hidden' name='id' value='{$value['id']}' />
-                <button type='submit' value='削除'>削除</button>
+                <form action='./delete_complete.php' method='POST'>
+                  <input type='hidden' name='id' value='{$value['id']}' />
+                  <button type='submit' value='削除'>削除</button>
+                </form>
               </div>
-            </form>
+              <div>
+                <form action='./edit/index.php' method='POST'>
+                  <input type='hidden' name='id' value='{$value['id']}' />
+                  <button type='submit' value='編集'>編集</button>
+                </form>
+            </div>
+
           </div>
           ";
           $html .= $post;

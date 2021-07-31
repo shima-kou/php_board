@@ -1,12 +1,11 @@
 <?php
-require("db_connect.php");
+require_once("db_connect.php");
 
 if (isset($_POST["id"])) {
   $id = $_POST["id"];
   try {
-    $stmt = $pdo->prepare("DELETE FROM board WHERE id = {$id}");
-    $flag = $stmt->execute();
-
+    $stmt = $pdo->prepare('DELETE FROM board WHERE id = :id');
+    $flag = $stmt->execute(array(':id' => $_POST['id']));
     $pdo = null;
   } catch (PDOException $e) {
     echo $e->getMessage();
@@ -23,7 +22,7 @@ if (isset($_POST["id"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>削除完了</title>
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <?php
