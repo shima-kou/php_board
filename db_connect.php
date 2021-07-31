@@ -4,8 +4,8 @@ $user = 'root';
 $password = 'root';
 
 try {
-    $pdo = new PDO($dsn, $user, $password);
+  $pdo = new PDO($dsn, $user, $password);
 } catch (PDOException $e) {
-    echo $e->getMessage();
-    exit;
+  echo $e->getMessage();
+  exit;
 }
